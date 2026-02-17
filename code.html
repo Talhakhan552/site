@@ -1,0 +1,503 @@
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Software House | Architecting the Future</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0d59f2",
+                        "accent-purple": "#8b5cf6",
+                        "background-light": "#f5f6f8",
+                        "background-dark": "#080808",
+                        "card-dark": "#121212",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style type="text/tailwindcss">
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+        .glass-nav {
+            background: rgba(8, 8, 8, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .neon-glow {
+            box-shadow: 0 0 15px rgba(13, 89, 242, 0.4);
+        }
+        .text-gradient {
+            background: linear-gradient(to right, #0d59f2, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .bento-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .bento-card:hover {
+            border-color: #0d59f2;
+            background: rgba(13, 89, 242, 0.05);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px -10px rgba(13, 89, 242, 0.3);
+        }
+        .bg-radial-glow {
+            background: radial-gradient(circle at center, rgba(13, 89, 242, 0.1) 0%, rgba(8, 8, 8, 1) 70%);
+        }
+        .project-card img {
+            transition: transform 0.5s ease;
+        }
+        .project-card:hover img {
+            transform: scale(1.05);
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .stagger-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .reveal.visible .stagger-reveal {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .stagger-1 { transition-delay: 0.1s; }
+        .stagger-2 { transition-delay: 0.2s; }
+        .stagger-3 { transition-delay: 0.3s; }
+        .stagger-4 { transition-delay: 0.4s; }
+        .btn-hover-glow {
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+        .btn-hover-glow:hover {
+            border-color: #0d59f2;
+            box-shadow: 0 0 20px rgba(13, 89, 242, 0.4);
+        }
+    </style>
+</head>
+
+<body class="bg-background-dark text-white font-display selection:bg-primary/30 overflow-x-hidden">
+    <nav class="sticky top-0 z-50 glass-nav">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a class="flex items-center gap-3 group cursor-pointer" href="#home">
+                <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center neon-glow">
+                    <span class="material-symbols-outlined text-white">terminal</span>
+                </div>
+                <span class="text-xl font-bold tracking-tight">SOFT<span class="text-primary">CORE</span></span>
+            </a>
+            <div class="hidden md:flex items-center gap-10">
+                <a class="text-sm font-medium text-gray-400 hover:text-white transition-colors" href="#home">Home</a>
+                <a class="text-sm font-medium text-gray-400 hover:text-white transition-colors"
+                    href="#services">Services</a>
+                <a class="text-sm font-medium text-gray-400 hover:text-white transition-colors"
+                    href="#projects">Projects</a>
+                <a class="text-sm font-medium text-gray-400 hover:text-white transition-colors" href="#about">About</a>
+                <a class="text-sm font-medium text-gray-400 hover:text-white transition-colors"
+                    href="#contact">Contact</a>
+            </div>
+            <a class="bg-primary hover:bg-primary/90 text-white px-6 py-2.5 rounded-lg text-sm font-bold transition-all neon-glow btn-hover-glow inline-flex items-center"
+                href="#contact">
+                Get Started
+            </a>
+        </div>
+    </nav>
+    <main class="relative">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-radial-glow pointer-events-none -z-10">
+        </div>
+        <section class="relative pt-40 pb-32 px-6 reveal" id="home">
+            <div class="max-w-5xl mx-auto text-center">
+                <div class="absolute inset-0 -z-10 opacity-20 pointer-events-none">
+                    <svg height="100%" width="100%" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <pattern height="40" id="dots" patternUnits="userSpaceOnUse" width="40" x="0" y="0">
+                                <circle cx="2" cy="2" fill="#0d59f2" r="1"></circle>
+                            </pattern>
+                        </defs>
+                        <rect fill="url(#dots)" height="100%" width="100%"></rect>
+                    </svg>
+                </div>
+                <div
+                    class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest mb-8">
+                    <span class="relative flex h-2 w-2">
+                        <span
+                            class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                    </span>
+                    Next-Gen Engineering
+                </div>
+                <h1 class="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-8 leading-[1.1]">
+                    Architecting the <br />
+                    <span class="text-gradient">Future with AI &amp; SaaS</span>
+                </h1>
+                <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-12 font-light leading-relaxed">
+                    Transforming modern businesses through intelligent automation and scalable cloud-native ecosystems
+                    built for high performance.
+                </p>
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
+                    <a class="w-full sm:w-auto min-w-[200px] bg-primary hover:bg-primary/90 text-white h-14 rounded-lg font-bold transition-all neon-glow flex items-center justify-center gap-2 btn-hover-glow"
+                        href="#services">
+                        Explore Services
+                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                    </a>
+                    <a class="w-full sm:w-auto min-w-[200px] border border-white/10 hover:border-primary/50 bg-white/5 text-white h-14 rounded-lg font-bold transition-all flex items-center justify-center btn-hover-glow"
+                        href="#projects">
+                        View Portfolio
+                    </a>
+                </div>
+            </div>
+        </section>
+        <section class="py-24 px-6 relative reveal" id="services">
+            <div class="max-w-7xl mx-auto">
+                <div class="mb-16">
+                    <h2 class="text-3xl font-bold mb-4">Engineering Excellence</h2>
+                    <p class="text-gray-400 max-w-md">Specialized high-end solutions designed to scale your business
+                        into the next era of digital infrastructure.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-4 h-auto md:h-[600px]">
+                    <div
+                        class="md:col-span-2 md:row-span-1 bento-card p-8 flex flex-col justify-between group stagger-reveal stagger-1">
+                        <div
+                            class="w-12 h-12 rounded-lg bg-primary/20 flex items-center justify-center mb-6 group-hover:bg-primary/40 transition-colors">
+                            <span class="material-symbols-outlined text-primary">psychology</span>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold mb-2">AI Automation</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed">Leverage Large Language Models and custom
+                                neural networks to automate complex business logic and decision-making pipelines.</p>
+                        </div>
+                    </div>
+                    <div
+                        class="md:col-span-1 md:row-span-2 bento-card p-8 flex flex-col justify-between group stagger-reveal stagger-2">
+                        <div
+                            class="w-12 h-12 rounded-lg bg-accent-purple/20 flex items-center justify-center mb-6 group-hover:bg-accent-purple/40 transition-colors">
+                            <span class="material-symbols-outlined text-accent-purple">cloud_done</span>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold mb-4">SaaS Development</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed">Multi-tenant architecture design focused on
+                                high availability, security, and effortless horizontal scalability.</p>
+                        </div>
+                        <div class="mt-8 pt-8 border-t border-white/5">
+                            <span class="text-xs font-mono text-accent-purple">Cloud-Native Ready</span>
+                        </div>
+                    </div>
+                    <div
+                        class="md:col-span-1 md:row-span-1 bento-card p-8 flex flex-col justify-between group stagger-reveal stagger-3">
+                        <div
+                            class="w-12 h-12 rounded-lg bg-emerald-500/20 flex items-center justify-center mb-6 group-hover:bg-emerald-500/40 transition-colors">
+                            <span class="material-symbols-outlined text-emerald-500">code</span>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold mb-2">Web Apps</h3>
+                            <p class="text-gray-400 text-sm">Blazing fast interactive web experiences built with modern
+                                stacks.</p>
+                        </div>
+                    </div>
+                    <div
+                        class="md:col-span-2 md:row-span-1 bento-card p-8 flex flex-col justify-between group stagger-reveal stagger-4">
+                        <div
+                            class="w-12 h-12 rounded-lg bg-orange-500/20 flex items-center justify-center mb-6 group-hover:bg-orange-500/40 transition-colors">
+                            <span class="material-symbols-outlined text-orange-500">video_library</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-8">
+                            <div>
+                                <h3 class="text-2xl font-bold mb-2">Media Systems</h3>
+                                <p class="text-gray-400 text-sm">Digital asset management and automated video processing
+                                    pipelines.</p>
+                            </div>
+                            <div class="flex items-center justify-end">
+                                <span
+                                    class="material-symbols-outlined text-6xl text-white/10 group-hover:text-primary/20 transition-all">settings_input_component</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="py-24 px-6 bg-white/[0.02] reveal" id="projects">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex items-end justify-between mb-16">
+                    <div>
+                        <h2 class="text-3xl font-bold mb-4">Featured Projects</h2>
+                        <p class="text-gray-400 max-w-md">A glimpse into the high-performance systems we've shipped
+                            recently.</p>
+                    </div>
+                    <a class="text-primary hover:underline font-medium mb-2 inline-flex items-center gap-2"
+                        href="#projects">
+                        View All Work <span class="material-symbols-outlined text-sm">open_in_new</span>
+                    </a>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div
+                        class="project-card group cursor-pointer bento-card !p-0 !bg-transparent border-white/10 hover:border-primary/50 overflow-hidden rounded-xl">
+                        <div class="relative overflow-hidden aspect-video">
+                            <img class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuB14LC2hq_P5e3QigLw42LysPy7XS124pZhDJ-o9jtBcQeekLkwh3-_eDc4u2GCK-Z6GQF6PtZpErONzzzFPCudtgVoXjur0kcXkxSQKhuLfkkQBrKePnzilbWotukgTNa35ESdiovFUZWlxCOVau07G0lL6nvIwJZfN9ENO_PUWQvvz4KG3wjNrPzuOjeMuPuRPc9Zx2xuGy8r84x1CwiYn5EYnvaJi7ri-poNlcdNaZqlViqm3eF3Jw49BDXXIVwGwOQNmYGM30OL" />
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent opacity-80">
+                            </div>
+                            <div class="absolute bottom-6 left-6">
+                                <span
+                                    class="text-xs font-mono text-primary bg-primary/10 px-2 py-1 rounded border border-primary/20">AI
+                                    &amp; DATA</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-2 group-hover:text-primary transition-colors">Project ORCA
+                            </h3>
+                            <p class="text-gray-400 leading-relaxed">Predictive analytics engine for maritime logistics
+                                using custom deep learning models.</p>
+                        </div>
+                    </div>
+                    <div
+                        class="project-card group cursor-pointer bento-card !p-0 !bg-transparent border-white/10 hover:border-primary/50 overflow-hidden rounded-xl">
+                        <div class="relative overflow-hidden aspect-video">
+                            <img class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzbAjqyO734OArC2VI_Wgd5b96TduIRzn4m5WdHnvoMVeocXUYuZOUdCERAv4df1d_CDgjzwfFrBuly7e3ecTCqKL_g47smm5i208vDbb_eBZ7YF2nA29SEpYKVmPpu7ybqdnnfhvgEiEVAMCP2G4YF20NxAz5QVxGk_t29G-nIXdfEg3pqHbZ0HC5cqYyc70P2t4HXMg3XitAnn1P2bLIxiH_PT6Wwil8UqGYf3QJZj28A8ynCbZ_JfvSfDjrPjouLipxHudD-fJ4" />
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent opacity-80">
+                            </div>
+                            <div class="absolute bottom-6 left-6">
+                                <span
+                                    class="text-xs font-mono text-accent-purple bg-accent-purple/10 px-2 py-1 rounded border border-accent-purple/20">FINTECH
+                                    SAAS</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-2 group-hover:text-primary transition-colors">Nebula
+                                Dashboard</h3>
+                            <p class="text-gray-400 leading-relaxed">A high-fidelity fintech platform providing
+                                real-time liquidity analysis.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="py-24 px-6 overflow-hidden reveal" id="about">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                    <div class="relative">
+                        <div class="absolute -top-20 -left-20 w-64 h-64 bg-primary/20 blur-[100px] rounded-full"></div>
+                        <div
+                            class="relative z-10 rounded-2xl border border-white/10 overflow-hidden shadow-2xl bg-card-dark/50 p-4">
+                            <div
+                                class="aspect-square bg-gradient-to-br from-gray-900 to-black rounded-xl border border-white/5 flex items-center justify-center p-12 overflow-hidden">
+                                <div class="relative w-full h-full">
+                                    <div
+                                        class="absolute inset-0 border-[2px] border-primary/20 rounded-full animate-pulse">
+                                    </div>
+                                    <div class="absolute inset-10 border-[2px] border-accent-purple/20 rounded-full">
+                                    </div>
+                                    <div class="absolute inset-20 border-[2px] border-white/10 rounded-full"></div>
+                                    <div class="absolute inset-0 flex items-center justify-center">
+                                        <span
+                                            class="material-symbols-outlined text-8xl text-primary neon-glow">hub</span>
+                                    </div>
+                                    <div
+                                        class="absolute top-1/2 left-0 w-8 h-8 bg-primary rounded-lg -translate-y-1/2 -translate-x-4 flex items-center justify-center">
+                                        <span class="material-symbols-outlined text-sm text-white">memory</span>
+                                    </div>
+                                    <div
+                                        class="absolute top-0 left-1/2 w-8 h-8 bg-accent-purple rounded-lg -translate-x-1/2 -translate-y-4 flex items-center justify-center">
+                                        <span class="material-symbols-outlined text-sm text-white">settings</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="text-primary font-bold tracking-[0.2em] text-sm uppercase mb-4 block">Our
+                            DNA</span>
+                        <h2 class="text-4xl md:text-5xl font-black mb-8 tracking-tight">Built by Engineers, <br />
+                            Driven by Innovation</h2>
+                        <div class="space-y-6 text-gray-400">
+                            <p class="leading-relaxed">
+                                We aren't just a development agency; we are a specialized engineering house. We focus on
+                                the "Hard Tech" challenges that modern companies face.
+                            </p>
+                            <div class="grid grid-cols-2 gap-6 pt-4">
+                                <div
+                                    class="p-4 rounded-xl border border-white/5 hover:border-primary/30 transition-all bg-white/5 group">
+                                    <h4 class="text-white font-bold mb-2 group-hover:text-primary transition-colors">01.
+                                        Precision</h4>
+                                    <p class="text-sm">Meticulous code standards and rigorous testing protocols.</p>
+                                </div>
+                                <div
+                                    class="p-4 rounded-xl border border-white/5 hover:border-primary/30 transition-all bg-white/5 group">
+                                    <h4 class="text-white font-bold mb-2 group-hover:text-primary transition-colors">02.
+                                        Scalability</h4>
+                                    <p class="text-sm">Architectures designed to grow horizontally from day one.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="py-24 px-6 bg-gradient-to-b from-background-dark to-[#050505] reveal" id="contact">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-black mb-4">Start Your Build</h2>
+                    <p class="text-gray-400">Ready to transform your technical infrastructure? Let's connect.</p>
+                </div>
+                <div class="bg-card-dark/40 border border-white/5 p-8 md:p-12 rounded-2xl backdrop-blur-xl">
+                    <form class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="space-y-2">
+                                <label class="text-xs font-bold text-gray-500 uppercase tracking-widest">Full
+                                    Name</label>
+                                <input
+                                    class="w-full bg-black/50 border border-white/10 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-white placeholder:text-gray-700"
+                                    placeholder="John Doe" type="text" />
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-xs font-bold text-gray-500 uppercase tracking-widest">Email
+                                    Address</label>
+                                <input
+                                    class="w-full bg-black/50 border border-white/10 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-white placeholder:text-gray-700"
+                                    placeholder="john@company.com" type="email" />
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs font-bold text-gray-500 uppercase tracking-widest">Project
+                                Scope</label>
+                            <select
+                                class="w-full bg-black/50 border border-white/10 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-white">
+                                <option class="bg-background-dark">AI Automation</option>
+                                <option class="bg-background-dark">SaaS Development</option>
+                                <option class="bg-background-dark">Web Ecosystem</option>
+                                <option class="bg-background-dark">Other Infrastructure</option>
+                            </select>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs font-bold text-gray-500 uppercase tracking-widest">Message</label>
+                            <textarea
+                                class="w-full bg-black/50 border border-white/10 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-white placeholder:text-gray-700"
+                                placeholder="Tell us about your technical challenges..." rows="4"></textarea>
+                        </div>
+                        <button
+                            class="w-full bg-primary hover:bg-primary/90 text-white py-4 rounded-lg font-bold transition-all neon-glow flex items-center justify-center gap-2 btn-hover-glow">
+                            Send Request
+                            <span class="material-symbols-outlined text-sm">send</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="bg-[#050505] border-t border-white/5 pt-16 pb-8 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-8 h-8 bg-primary rounded flex items-center justify-center">
+                            <span class="material-symbols-outlined text-white text-sm">terminal</span>
+                        </div>
+                        <span class="text-lg font-bold tracking-tight">SOFTCORE</span>
+                    </div>
+                    <p class="text-gray-500 max-w-sm mb-6">
+                        Pioneering the next wave of intelligent software systems. Based globally, building for the
+                        future.
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <a class="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center hover:bg-primary/20 hover:border-primary/50 transition-all btn-hover-glow"
+                            href="#">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z">
+                                </path>
+                            </svg>
+                        </a>
+                        <a class="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center hover:bg-primary/20 hover:border-primary/50 transition-all btn-hover-glow"
+                            href="#">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                                <path
+                                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z">
+                                </path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-6">Capabilities</h4>
+                    <ul class="space-y-4 text-sm text-gray-500">
+                        <li><a class="hover:text-primary transition-colors" href="#services">AI Automation</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#services">Scalable SaaS</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#services">Cloud Migration</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#services">System Audit</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-6">Company</h4>
+                    <ul class="space-y-4 text-sm text-gray-500">
+                        <li><a class="hover:text-primary transition-colors" href="#about">Our Story</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#projects">Engineering Blog</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#contact">Careers</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#contact">Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+                <p class="text-xs text-gray-600">© 2024 SoftCore Engineering House. All rights reserved.</p>
+                <a class="group flex items-center gap-2 text-xs text-gray-500 hover:text-white transition-colors cursor-pointer"
+                    href="#home">
+                    Back to Top
+                    <span
+                        class="material-symbols-outlined text-sm group-hover:-translate-y-1 transition-transform">arrow_upward</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+    <script>
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        document.querySelectorAll('.reveal').forEach((el) => {
+            observer.observe(el);
+        });
+    </script>
+
+</body>
+
+</html>
